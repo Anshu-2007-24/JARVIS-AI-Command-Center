@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J.A.R.V.I.S — AI Command Center</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- STARTUP SCREEN -->
+    <div id="startup" class="startup">
+        <div class="startup-content">
+            <p class="startup-line" id="startup-line">INITIALIZING NEURAL SYSTEM...</p>
+
+            <div class="startup-bar">
+                <div class="startup-bar-fill" id="startup-bar-fill"></div>
+            </div>
+
+            <h1 class="startup-logo" id="startup-logo">J.A.R.V.I.S</h1>
+            <p class="startup-status" id="startup-status">SYSTEM ONLINE</p>
+        </div>
+    </div>
+
+    <!-- CINEMATIC BACKGROUND -->
+    <div class="background">
+        <div class="bg-layer bg-base"></div>
+        <div class="bg-layer bg-glow-purple"></div>
+        <div class="bg-layer bg-glow-red"></div>
+        <div class="bg-layer bg-grid"></div>
+        <div class="bg-layer bg-scanlines"></div>
+        <div class="bg-layer bg-particles" id="particles"></div>
+    </div>
+
+    <!-- BACKGROUND JARVIS -->
+    <div class="hologram" id="hologram">
+        <img src="assets/jarvis.png"
+             alt="JARVIS hologram"
+             class="hologram-img"
+             id="hologram-img">
+
+        <div class="hologram-scan"></div>
+    </div>
+
+    <!-- MAIN HUD -->
+    <main class="hud">
+
+        <!-- TOP STATUS -->
+        <header class="status-bar">
+            <div class="status-left">
+                <span class="status-led" id="status-led"></span>
+                <span class="status-text" id="status-text">BOOTING...</span>
+            </div>
+
+            <div class="status-right">
+                <span id="status-clock">--:--:--</span>
+            </div>
+        </header>
+
+        <!-- FUTURISTIC NAVIGATION -->
+        <nav class="nav" id="nav" aria-label="JARVIS navigation">
+
+            <div class="nav-line"></div>
+
+            <button class="nav-item active" data-panel="core" type="button">
+                <span class="nav-icon">◈</span>
+                <span class="nav-name">CORE</span>
+                <span class="nav-number">01</span>
+            </button>
+
+            <button class="nav-item" data-panel="system" type="button">
+                <span class="nav-icon">◇</span>
+                <span class="nav-name">SYSTEM</span>
+                <span class="nav-number">02</span>
+            </button>
+
+            <button class="nav-item" data-panel="intelligence" type="button">
+                <span class="nav-icon">✦</span>
+                <span class="nav-name">INTEL</span>
+                <span class="nav-number">03</span>
+            </button>
+
+            <button class="nav-item nav-core" data-panel="command" type="button">
+                <span class="nav-core-ring"></span>
+                <span class="nav-core-dot"></span>
+                <span class="nav-name">CMD</span>
+            </button>
+
+            <button class="nav-item" data-panel="history" type="button">
+                <span class="nav-icon">⌁</span>
+                <span class="nav-name">HISTORY</span>
+                <span class="nav-number">04</span>
+            </button>
+
+            <button class="nav-item" data-panel="settings" type="button">
+                <span class="nav-icon">⚙</span>
+                <span class="nav-name">SETTINGS</span>
+                <span class="nav-number">05</span>
+            </button>
+
+            <button class="nav-item" data-panel="help" type="button">
+                <span class="nav-icon">?</span>
+                <span class="nav-name">HELP</span>
+                <span class="nav-number">06</span>
+            </button>
+
+            <button class="nav-item" data-panel="study" type="button">
+                <span class="nav-icon">⚡</span>
+                <span class="nav-name">STUDY</span>
+                <span class="nav-number">07</span>
+            </button>
+
+            <span class="nav-active-line" id="nav-active-line"></span>
+        </nav>
+
+        <!-- LEFT SYSTEM PANEL -->
+        <aside class="hud-panel panel-left" id="panel-left">
+
+            <div class="panel-title">
+                <span>SYSTEM</span>
+                <span class="panel-code">01</span>
+            </div>
+
+            <div class="panel-line"></div>
+
+            <div class="stat-row">
+                <span>CORE STATUS</span>
+                <strong class="online-text">ONLINE</strong>
+            </div>
+
+            <div class="stat-row">
+                <span>CPU CORES</span>
+                <strong id="sys-cpu-cores">--</strong>
+            </div>
+
+            <div class="stat-row">
+                <span>MEMORY</span>
+                <strong id="sys-memory">--</strong>
+            </div>
+
+            <div class="stat-row">
+                <span>NETWORK</span>
+                <strong class="online-text" id="sys-network">--</strong>
+            </div>
+
+            <div class="stat-row">
+                <span>BROWSER</span>
+                <strong id="sys-browser">--</strong>
+            </div>
+
+            <div class="stat-row">
+                <span>OS</span>
+                <strong id="sys-os">--</strong>
+            </div>
+
+            <div class="stat-row">
+                <span>BATTERY</span>
+                <strong id="sys-battery">--</strong>
+            </div>
+
+            <div class="mini-loader">
+                <span></span>
+            </div>
+
+        </aside>
+
+        <!-- CENTRAL AI CORE -->
+        <section class="core-section" id="core-section">
+
+            <div class="core-status-small" id="core-status">
+                NEURAL CORE // ACTIVE
+            </div>
+
+            <div class="jarvis-core" id="jarvis-core">
+
+                <div class="core-ring ring-outer"></div>
+                <div class="core-ring ring-middle"></div>
+                <div class="core-ring ring-inner"></div>
+
+                <div class="core-orbit orbit-1">
+                    <span class="orbit-dot"></span>
+                </div>
+
+                <div class="core-orbit orbit-2">
+                    <span class="orbit-dot"></span>
+                </div>
+
+                <div class="core-orbit orbit-3">
+                    <span class="orbit-dot"></span>
+                </div>
+
+                <div class="core-energy"></div>
+                <div class="core-crosshair"></div>
+            </div>
+
+            <p class="core-label">J.A.R.V.I.S CORE // ONLINE</p>
+
+        </section>
+
+        <!-- RIGHT INTELLIGENCE PANEL -->
+        <aside class="hud-panel panel-right" id="panel-right">
+
+            <div class="panel-title">
+                <span>INTELLIGENCE</span>
+                <span class="panel-code">02</span>
+            </div>
+
+            <div class="panel-line"></div>
+
+            <div class="time-display">
+                <span id="panel-time">--:--</span>
+                <small id="panel-period">--</small>
+            </div>
+
+            <div class="date-display" id="panel-date">
+                INITIALIZING DATE...
+            </div>
+
+            <div class="info-card">
+                <span>WEATHER</span>
+                <strong id="panel-weather">--</strong>
+            </div>
+
+            <div class="info-card">
+                <span>LOCATION</span>
+                <strong id="panel-location">LOCATING...</strong>
+            </div>
+
+            <div class="info-card">
+                <span>AI MODE</span>
+                <strong id="ai-mode">STANDBY</strong>
+            </div>
+
+            <div class="intel-tabs" aria-label="Intelligence modules">
+                <button type="button" data-intel="weather" class="intel-tab active">WEATHER</button>
+                <button type="button" data-intel="location" class="intel-tab">LOCATION</button>
+                <button type="button" data-intel="system" class="intel-tab">SYSTEM</button>
+                <button type="button" data-intel="study" class="intel-tab">STUDY</button>
+            </div>
+
+            <div class="intel-detail" id="intel-detail">
+                <div class="intel-heading">WEATHER INTELLIGENCE</div>
+                <div class="intel-row"><span>LOCATION</span><strong id="intel-location">LOCATING...</strong></div>
+                <div class="intel-row"><span>CONDITION</span><strong id="intel-condition">WAITING...</strong></div>
+                <div class="intel-row"><span>TEMP</span><strong id="intel-temp">--°C</strong></div>
+                <div class="intel-row"><span>FEELS LIKE</span><strong id="intel-feels">--°C</strong></div>
+                <div class="intel-row"><span>HUMIDITY</span><strong id="intel-humidity">--%</strong></div>
+                <div class="intel-row"><span>WIND</span><strong id="intel-wind">-- km/h</strong></div>
+                <div class="intel-row"><span>UV</span><strong id="intel-uv">--</strong></div>
+                <div class="intel-row"><span>SUNRISE</span><strong id="intel-sunrise">--:--</strong></div>
+                <div class="intel-row"><span>SUNSET</span><strong id="intel-sunset">--:--</strong></div>
+                <div class="intel-scanline"></div>
+            </div>
+
+        </aside>
+
+        <!-- BOTTOM TERMINAL -->
+        <section class="terminal" id="terminal">
+
+            <div class="terminal-header">
+                <span id="terminal-title">COMMAND TERMINAL</span>
+                <span id="terminal-status">READY</span>
+            </div>
+
+            <div class="terminal-body" id="terminal-body">
+                <p class="terminal-line">
+                    <span class="terminal-dot"></span>
+                    J.A.R.V.I.S command channel ready.
+                </p>
+
+                <p class="terminal-line dim">
+                    Type a command below. Example: open youtube
+                </p>
+            </div>
+
+            <!-- STEP 7: REAL TYPED COMMAND INPUT -->
+            <form class="command-form" id="command-form">
+                <span class="command-prompt">&gt;</span>
+
+                <input
+                    id="command-input"
+                    class="command-input"
+                    type="text"
+                    autocomplete="off"
+                    placeholder="Enter JARVIS command..."
+                    aria-label="JARVIS command"
+                >
+
+                <button class="command-button execute-button" type="submit">
+                    EXECUTE
+                </button>
+
+                <button class="command-button clear-button" id="clear-button" type="button">
+                    CLEAR
+                </button>
+            </form>
+
+            <div class="quick-commands">
+                <button class="quick-command" type="button" data-command="hello jarvis">HELLO</button>
+                <button class="quick-command" type="button" data-command="what time is it">TIME</button>
+                <button class="quick-command" type="button" data-command="open youtube">YOUTUBE</button>
+                <button class="quick-command" type="button" data-command="help">HELP</button>
+            </div>
+
+            <div class="voice-control-row">
+                <div class="voice-status" id="voice-status" aria-live="polite">
+                    <span class="voice-dot" id="voice-dot"></span>
+                    <span id="voice-status-text">SAY "JARVIS"</span>
+                </div>
+                <select id="voice-language" class="voice-language" aria-label="Voice language">
+                    <option value="en-IN">English (English)</option>
+                    <option value="hi-IN">Hindi (हिन्दी)</option>
+                    <option value="pa-IN">Punjabi (ਪੰਜਾਬੀ)</option>
+                    <option value="mr-IN">Marathi (मराठी)</option>
+                    <option value="bn-IN">Bengali (বাংলা)</option>
+                    <option value="gu-IN">Gujarati (ગુજરાતી)</option>
+                    <option value="ta-IN">Tamil (தமிழ்)</option>
+                    <option value="te-IN">Telugu (తెలుగు)</option>
+                    <option value="kn-IN">Kannada (ಕನ್ನಡ)</option>
+                    <option value="ml-IN">Malayalam (മലയാളം)</option>
+                    <option value="or-IN">Odia (ଓଡ଼ିଆ)</option>
+                    <option value="as-IN">Assamese (অসমীয়া)</option>
+                    <option value="ur-PK">Urdu (اردو)</option>
+                    <option value="fr-FR">French (Français)</option>
+                    <option value="de-DE">German (Deutsch)</option>
+                    <option value="es-ES">Spanish (Español)</option>
+                    <option value="it-IT">Italian (Italiano)</option>
+                    <option value="pt-BR">Portuguese (Português)</option>
+                    <option value="zh-CN">Mandarin Chinese (中文)</option>
+                    <option value="ja-JP">Japanese (日本語)</option>
+                    <option value="ko-KR">Korean (한국어)</option>
+                    <option value="ru-RU">Russian (Русский)</option>
+                    <option value="ar-SA">Arabic (العربية)</option>
+                    <option value="tr-TR">Turkish (Türkçe)</option>
+                    <option value="id-ID">Indonesian (Bahasa Indonesia)</option>
+                    <option value="vi-VN">Vietnamese (Tiếng Việt)</option>
+                    <option value="nl-NL">Dutch (Nederlands)</option>
+                    <option value="bh-IN">Bhojpuri (भोजपुरी)</option>
+                    <option value="mai-IN">Maithili (मैथिली)</option>
+                    <option value="mag-IN">Magahi (मगही)</option>
+                </select>
+            </div>
+            <div class="voice-transcript" id="voice-transcript">Microphone ready. Say “Jarvis”.</div>
+
+            <section class="study-module" id="study-module" hidden>
+                <div class="study-head"><span>STUDY MODE</span><strong id="study-streak">STREAK 0</strong></div>
+                <div class="study-grid">
+                    <input id="study-task" placeholder="Add a study task..." maxlength="100">
+                    <button id="study-add" type="button">ADD</button>
+                    <button id="pomodoro" type="button">25:00</button>
+                </div>
+                <div id="study-list" class="study-list"></div>
+                <div class="study-progress"><span id="study-progress-fill"></span></div>
+                <div class="study-note">Tasks and progress are saved locally in this browser.</div>
+            </section>
+
+        </section>
+
+    </main>
+
+    <!-- FULL-SCREEN STUDY MODE -->
+    <section class="study-screen" id="study-screen" hidden aria-label="JARVIS Study Mode">
+        <div class="sm-wrap">
+
+            <header class="sm-head">
+                <div>
+                    <div class="sm-kicker">J.A.R.V.I.S // FOCUS SYSTEM</div>
+                    <h1>STUDY MODE</h1>
+                </div>
+                <div class="sm-head-actions">
+                    <span class="sm-dnd-status" id="sm-dnd-status"><i></i><b id="sm-dnd-label">DND OFF</b></span>
+                    <button class="sm-btn" id="sm-dnd-toggle" type="button" aria-pressed="false">STUDY DND</button>
+                    <button class="sm-btn" id="study-exit" type="button">← JARVIS</button>
+                </div>
+            </header>
+
+            <section class="sm-stats" aria-label="Study statistics">
+                <div class="sm-stat"><span>FOCUS SESSIONS</span><strong id="sm-stat-sessions">0</strong></div>
+                <div class="sm-stat"><span>FOCUS MINUTES</span><strong id="sm-stat-minutes">0</strong></div>
+                <div class="sm-stat"><span>TASKS COMPLETED</span><strong id="sm-stat-tasks">0</strong></div>
+                <div class="sm-stat"><span>CURRENT STREAK</span><strong id="sm-stat-streak">0 DAYS</strong></div>
+                <div class="sm-stat"><span>DISTRACTIONS TODAY</span><strong id="sm-stat-distractions">00</strong></div>
+            </section>
+
+            <div class="sm-grid">
+
+                <div class="sm-col">
+
+                    <section class="sm-card">
+                        <div class="sm-card-head"><span>TODAY'S TASKS</span><span id="sm-task-count">0 / 0</span></div>
+                        <form class="sm-task-form" id="sm-task-form" autocomplete="off">
+                            <input id="sm-task-subject" class="sm-f-subject" maxlength="30" placeholder="Subject (e.g. DBMS)" aria-label="Subject">
+                            <input id="sm-task-title" class="sm-f-title" maxlength="80" placeholder="Task (e.g. SQL Revision)" aria-label="Task" required>
+                            <select id="sm-task-priority" class="sm-f-priority" aria-label="Priority">
+                                <option value="high">HIGH</option>
+                                <option value="medium" selected>MEDIUM</option>
+                                <option value="low">LOW</option>
+                            </select>
+                            <input id="sm-task-minutes" class="sm-f-minutes" type="number" min="1" max="600" inputmode="numeric" placeholder="Minutes" aria-label="Estimated minutes">
+                            <div class="sm-f-actions">
+                                <button class="sm-btn sm-btn-primary" id="sm-task-submit" type="submit">ADD</button>
+                                <button class="sm-btn" id="sm-task-cancel" type="button" hidden>CANCEL</button>
+                            </div>
+                        </form>
+                        <ul class="sm-task-list" id="sm-task-list"></ul>
+                        <div class="sm-bar"><span id="sm-task-bar"></span></div>
+                        <div class="sm-card-foot">
+                            <span id="sm-task-remaining">REMAINING 0 MIN</span>
+                            <button class="sm-link" id="sm-clear-done" type="button" hidden>CLEAR COMPLETED</button>
+                        </div>
+                    </section>
+
+                    <section class="sm-card">
+                        <div class="sm-card-head"><span>QUICK NOTES</span><span id="sm-notes-state">NO DATA</span></div>
+                        <textarea id="sm-notes" class="sm-notes" rows="6" maxlength="5000" placeholder="Formulas, reminders, important topics, exam notes…" aria-label="Quick notes"></textarea>
+                    </section>
+
+                </div>
+
+                <div class="sm-col">
+
+                    <section class="sm-card sm-timer-card">
+                        <div class="sm-card-head"><span>POMODORO</span><span class="sm-state"><i class="sm-dot" id="sm-timer-dot"></i><b id="sm-timer-state">READY</b></span></div>
+                        <div class="sm-modes" id="sm-modes">
+                            <button class="sm-mode active" type="button" data-mode="focus">FOCUS</button>
+                            <button class="sm-mode" type="button" data-mode="short">SHORT BREAK</button>
+                            <button class="sm-mode" type="button" data-mode="long">LONG BREAK</button>
+                        </div>
+                        <div class="sm-time" id="sm-time" role="timer" aria-live="off">25:00</div>
+                        <div class="sm-bar sm-bar-timer"><span id="sm-timer-bar"></span></div>
+                        <div class="sm-timer-actions">
+                            <button class="sm-btn sm-btn-primary" id="sm-timer-start" type="button">START</button>
+                            <button class="sm-btn" id="sm-timer-pause" type="button" disabled>PAUSE</button>
+                            <button class="sm-btn" id="sm-timer-reset" type="button">RESET</button>
+                        </div>
+                        <div class="sm-note" id="sm-timer-note">FOCUS · 25 MIN</div>
+                    </section>
+
+                    <section class="sm-card sm-next-card">
+                        <div class="sm-card-head"><span>NEXT TASK</span><span id="sm-next-pri">—</span></div>
+                        <div class="sm-next-title" id="sm-next-title">NO UPCOMING TASK</div>
+                        <div class="sm-note" id="sm-next-meta">Highest-priority unfinished task from your list.</div>
+                    </section>
+
+                    <section class="sm-card">
+                        <div class="sm-card-head"><span>TIMETABLE</span><span id="study-file-state">NOT LOADED</span></div>
+                        <label class="sm-upload" for="study-timetable-file">
+                            <span class="sm-upload-icon">↑</span>
+                            <span><strong>UPLOAD TIMETABLE</strong><small>PNG, JPG or PDF</small></span>
+                        </label>
+                        <input id="study-timetable-file" type="file" accept="image/png,image/jpeg,application/pdf,.png,.jpg,.jpeg,.pdf" hidden>
+                        <div class="sm-tt-preview" id="sm-tt-preview"><span>NO TIMETABLE UPLOADED</span></div>
+                        <div class="sm-card-foot">
+                            <a class="sm-link" id="sm-tt-open" href="#" target="_blank" rel="noopener" hidden>OPEN FULL SIZE</a>
+                            <button class="sm-link" id="sm-tt-remove" type="button" hidden>REMOVE</button>
+                        </div>
+                        <p class="sm-note">Shown exactly as uploaded. JARVIS does not read or parse its contents — add what you need as tasks.</p>
+                    </section>
+
+                </div>
+            </div>
+
+            <div class="sm-footer">J.A.R.V.I.S // FOCUS CORE <span>•</span> SAVED LOCALLY IN THIS BROWSER <span>•</span> STUDY DND AFFECTS THIS TAB ONLY — OTHER APPS ARE NOT BLOCKED</div>
+        </div>
+
+        <div class="sm-toast" id="sm-toast" role="status" aria-live="polite" hidden>
+            <button class="sm-toast-close" id="sm-toast-close" type="button" aria-label="Dismiss">✕</button>
+            <b>J.A.R.V.I.S // FOCUS REMINDER</b>
+            <span>You left your study session.</span>
+            <span>Stay focused on your current task.</span>
+        </div>
+    </section>
+
+    <script src="script.js" ></script>
+
+</body>
+</html>
